@@ -15,7 +15,7 @@ public class Hand : MonoBehaviour
     
     void Start()
     {
-        deck = FindObjectOfType<Deck>();
+        deck = Object.FindAnyObjectByType<Deck>();
         if (deck == null)
         {
             Debug.LogError("No Deck found in the scene!");
@@ -60,7 +60,7 @@ public class Hand : MonoBehaviour
         if (cardsInHand.Contains(card))
         {
             cardsInHand.Remove(card);
-            deck.DiscardCard(card);
+            // La carte est simplement retirée de la main
             UpdateCardPositions();
         }
     }

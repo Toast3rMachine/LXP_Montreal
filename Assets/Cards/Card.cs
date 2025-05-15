@@ -23,6 +23,21 @@ public class Card : MonoBehaviour
     {
         // Initialise le tableau de prévisualisation
         previewTiles = new GameObject[3,3];
+        
+        // Initialise un pattern de test en croix par défaut
+        SetAttackPattern(new string[] {
+            " X ",  // Première ligne
+            "XXX",  // Deuxième ligne
+            " X "   // Troisième ligne
+        });
+        
+        // Configuration de base de la carte
+        if (string.IsNullOrEmpty(cardName))
+        {
+            cardName = "Cross Strike";
+            description = "Frappe en croix qui inflige des dégâts dans un motif en +";
+            damage = 5;
+        }
     }
     
     // Méthode appelée quand la carte est programmée pour être jouée
