@@ -7,20 +7,29 @@ public class CameraManager : MonoBehaviour
     public GameObject cameraCarte;
 
     public bool phaseCarte;
-    private float timer = 5f;
+    private float elapsedTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         instance = this;
         cameraEsquive.SetActive(true);
-        InvokeRepeating ("ChangeCamera", 0, timer);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // yield return new WaitForSeconds(3);
+        elapsedTime += Time.deltaTime;
+        int seconds = Mathf.FloorToInt(elapsedTime % 60);
+        if (seconds == 5 && phaseCarte)
+        {
+            ChangeCamera();
+            elapsedTime = 0;
+        } else if (seconds == 30 && !phaseCarte)
+        {
+            ChangeCamera();
+            elapsedTime = 0;
+        }
     }
 
     void ChangeCamera()
@@ -30,14 +39,12 @@ public class CameraManager : MonoBehaviour
             cameraEsquive.SetActive(false);
             cameraCarte.SetActive(true);
             phaseCarte = !phaseCarte;
-            timer = 5f;
         }
         else
         {
             cameraEsquive.SetActive(true);
             cameraCarte.SetActive(false);
             phaseCarte = !phaseCarte;
-            timer = 30f;
         }
     }
 }
