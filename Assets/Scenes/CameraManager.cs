@@ -1,13 +1,16 @@
 using UnityEngine;
+using TMPro;
 
 public class CameraManager : MonoBehaviour
 {
     public static CameraManager instance;
     public GameObject cameraEsquive;
     public GameObject cameraCarte;
-
     public bool phaseCarte;
+    [SerializeField] TextMeshProUGUI timerText;
+
     private float elapsedTime;
+    private float remainingTime = 30;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,15 +23,23 @@ public class CameraManager : MonoBehaviour
     void Update()
     {
         elapsedTime += Time.deltaTime;
+        remainingTime -= Time.deltaTime;
+
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
+        int secondsRemaining = Mathf.FloorToInt(remainingTime % 60);
+
+        timerText.text = string.Format("{00}", secondsRemaining);
         if (seconds == 5 && phaseCarte)
         {
             ChangeCamera();
             elapsedTime = 0;
+            timerText.enabled = true;
+            remainingTime = 30;
         } else if (seconds == 30 && !phaseCarte)
         {
             ChangeCamera();
             elapsedTime = 0;
+            timerText.enabled = false;
         }
     }
 
