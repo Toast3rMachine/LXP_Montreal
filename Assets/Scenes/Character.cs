@@ -22,10 +22,14 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+
+        if (!CameraManager.instance.phaseCarte) return;
 
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
+
             if(Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
                 if ( (indexH + (int) Input.GetAxisRaw("Horizontal") >=0) && (indexH + (int) Input.GetAxisRaw("Horizontal") <= 2))
@@ -38,10 +42,13 @@ public class Character : MonoBehaviour
             } else if(Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
                 if ( (indexV + (int) Input.GetAxisRaw("Vertical") >= 0) && (indexV + (int) Input.GetAxisRaw("Vertical") <= 2))
-                indexV += (int) Input.GetAxisRaw("Vertical");
-                index = (indexH % 3) + (indexV * 3);
-                movePoint.position = tiles[index].transform.position;
-                movePoint.position += new Vector3(0f, 1f, 0f);
+                {
+                    indexV += (int) Input.GetAxisRaw("Vertical");
+                    index = (indexH % 3) + (indexV * 3);
+                    movePoint.position = tiles[index].transform.position;
+                    movePoint.position += new Vector3(0f, 1f, 0f);
+                }
+                
             }
         }
     }
