@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,65 +7,115 @@ public class Attack : MonoBehaviour
 {
     // public GameObject card;
     public Transform platform;
-    public GameObject spellPrefab;
     public GameObject player;
-    public bool isThrow;
 
-    [SerializeField] CardAttack cardAttack;
+    //[SerializeField] CardAttack cardAttack;
+    private List<CardAttack> cardOrder;
+    private CardAttack card;
 
     private GameObject[] tiles;
     private GameObject spell;
-    private float moveSpeed = 10f;
     private bool isSpellcast;
+    private bool spellInInvocation;
 
+    private int index;
     private float elapsedTime;
 
+    void Start()
+    {
+        cardOrder = new List<CardAttack>();
+        index = 0;
+    }
+    
     // Update is called once per frame
     void Update()
     {
-        if (spell != null && isSpellcast && isThrow)
+        if (!CameraManager.instance.phaseCarte) return;
+
+        if (!spellInInvocation && cardOrder.Count != 0)
         {
-            spell.transform.Translate(Vector3.right *  Time.deltaTime * moveSpeed);
+            CastSpellInList();
+        }
+        
+        if (isSpellcast && card.isThrow)
+        {
+            
+            var direction = (platform.GetChild(4).transform.position-player.transform.position).normalized;
+            spell.transform.Translate(direction *  Time.deltaTime * card.moveSpeed);
             if (spell.transform.position.x > platform.GetChild(4).transform.position.x)
             {
                 Destroy(spell);
                 isSpellcast = false;
+                spellInInvocation = false;
+                index += 1;
             }
         }
-        else if (isSpellcast && !isThrow)
+        else if (isSpellcast && !card.isThrow)
         {
+            
             elapsedTime += Time.deltaTime;
             if (elapsedTime > 1.5f)
             {
-                GameObject[] allObjects = GameObject.FindGameObjectsWithTag(spellPrefab.tag);
+                GameObject[] allObjects = GameObject.FindGameObjectsWithTag(card.spellPrefab.tag);
                 foreach(GameObject obj in allObjects) {
                     Destroy(obj);
                 }
                 isSpellcast = false;
+                spellInInvocation = false;
                 elapsedTime = 0;
+                index += 1;
             }
+        }
+        
+        if (index > cardOrder.Count - 1)
+        {
+            cardOrder.Clear();
+            index = 0;
         }
     }
 
-    void OnMouseDown()
+    void CastSpellInList()
     {
-        if (!isSpellcast && isThrow)
+        spellInInvocation = true;
+        if (!isSpellcast && cardOrder[index].isThrow)
         {
-            spell = Instantiate(spellPrefab,  new Vector3(0.5f, 2f, 0f), Quaternion.identity);
+            spell = Instantiate(cardOrder[index].spellPrefab,  new Vector3(0.5f, 2f, 0f), Quaternion.identity);
             spell.transform.position += player.transform.position;
             isSpellcast = true;
         }
         else
         {
-            isSpellcast = true;
-            for (int i =0; i < cardAttack.attackPattern.Length; i++)
+            for (int j = 0; j < cardOrder[index].attackPattern.Length; j++)
             {
-                if (cardAttack.attackPattern[i])
+                if (cardOrder[index].attackPattern[j])
                 {
-                    spell = Instantiate(spellPrefab, platform.GetChild(i).position, Quaternion.identity);
+                    spell = Instantiate(cardOrder[index].spellPrefab, platform.GetChild(j).position, Quaternion.identity);
                     spell.transform.position += new Vector3(0f, 2f, 0f);
                 }
             }
+            isSpellcast = true;
         }
+
+        card = cardOrder[index];
+        StartCoroutine(Wait());
+    }
+
+    public void addToCardList(CardAttack cardAttack)
+    {
+        if (cardOrder.Count < 3)
+        {
+            cardOrder.Add(cardAttack);
+            Debug.Log("Sort Ajouté  à la liste des sorts: " + cardOrder.Count);
+        }
+        else
+        {
+            Debug.Log("Nombre de sorts maximal atteint");
+        }
+        
+    }
+    
+    private IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }

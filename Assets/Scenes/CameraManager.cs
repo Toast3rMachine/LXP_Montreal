@@ -10,7 +10,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerText;
 
     private float elapsedTime;
-    private float remainingTime = 30;
+    private float remainingTime = 10; //30
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,8 +34,8 @@ public class CameraManager : MonoBehaviour
             ChangeCamera();
             elapsedTime = 0;
             timerText.enabled = true;
-            remainingTime = 30;
-        } else if (seconds == 30 && !phaseCarte)
+            remainingTime = 10; //30
+        } else if (seconds == 10 && !phaseCarte) //30
         {
             ChangeCamera();
             elapsedTime = 0;

@@ -299,7 +299,6 @@ GameObject:
   - component: {fileID: 4109352997014495847}
   - component: {fileID: 6153465999046797209}
   - component: {fileID: 4751962160353358187}
-  - component: {fileID: 1183484237772567839}
   m_Layer: 0
   m_Name: Sort de Feu
   m_TagString: Untagged
@@ -412,20 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPattern: 000000000100000000
---- !u!114 &1183484237772567839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4049652050761886601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a3bf01d1033fef4a9c7ef85923f00a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  platform: {fileID: 0}
-  spellPrefab: {fileID: 7803388210823248224, guid: 803045e988685b946abad2e3e0549444, type: 3}
-  player: {fileID: 0}
-  isThrow: 1
-  cardAttack: {fileID: 4751962160353358187}
+  spellPrefab: {fileID: 0}
+  isThrow: 0
+  moveSpeed: 10
+  attack: {fileID: 0}

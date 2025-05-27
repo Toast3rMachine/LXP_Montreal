@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 474808177560131806}
   - component: {fileID: 6157944242869311906}
   - component: {fileID: 1592501893492667645}
-  - component: {fileID: 2234472943366329606}
   m_Layer: 0
   m_Name: Sort de Glace
   m_TagString: Untagged
@@ -126,23 +125,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPattern: 010001010001010001
---- !u!114 &2234472943366329606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430757582792562062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a3bf01d1033fef4a9c7ef85923f00a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  platform: {fileID: 0}
-  spellPrefab: {fileID: 2321673221645461826, guid: 9f0a976857cf05943a236238cc86800a, type: 3}
-  player: {fileID: 0}
+  spellPrefab: {fileID: 0}
   isThrow: 0
-  cardAttack: {fileID: 1592501893492667645}
+  moveSpeed: 10
+  attack: {fileID: 0}
 --- !u!1 &3434615022610051622
 GameObject:
   m_ObjectHideFlags: 0

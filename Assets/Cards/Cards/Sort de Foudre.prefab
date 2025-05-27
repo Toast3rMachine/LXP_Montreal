@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5600474101115320570}
   - component: {fileID: 7341576225052325693}
   - component: {fileID: 7173133903932568804}
-  - component: {fileID: 3386711744464393505}
   m_Layer: 0
   m_Name: Sort de Foudre
   m_TagString: Untagged
@@ -126,23 +125,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPattern: 010001000100010001
---- !u!114 &3386711744464393505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2107206603454189974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a3bf01d1033fef4a9c7ef85923f00a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  platform: {fileID: 0}
-  spellPrefab: {fileID: 9133391520069406166, guid: 3235b0a131150a54e858a8e7ae2b0e4e, type: 3}
-  player: {fileID: 0}
+  spellPrefab: {fileID: 0}
   isThrow: 0
-  cardAttack: {fileID: 7173133903932568804}
+  moveSpeed: 10
+  attack: {fileID: 0}
 --- !u!1 &3810747221556635719
 GameObject:
   m_ObjectHideFlags: 0
