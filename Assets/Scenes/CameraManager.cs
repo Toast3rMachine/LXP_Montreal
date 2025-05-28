@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class CameraManager : MonoBehaviour
 {
@@ -7,7 +8,10 @@ public class CameraManager : MonoBehaviour
     public GameObject cameraEsquive;
     public GameObject cameraCarte;
     public bool phaseCarte;
+
     [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] GameObject readyButton;
+    [SerializeField] ReadyButton canvas; //* En réalité c'est le canvas car c'est lui qui a le script "Ready Button"
 
     private float elapsedTime;
     private float remainingTime = 30;
@@ -34,12 +38,15 @@ public class CameraManager : MonoBehaviour
             ChangeCamera();
             elapsedTime = 0;
             timerText.enabled = true;
+            readyButton.SetActive(true);
             remainingTime = 30;
-        } else if (seconds == 30 && !phaseCarte)
+        } else if ((canvas.ready || seconds == 30) && !phaseCarte)
         {
             ChangeCamera();
             elapsedTime = 0;
             timerText.enabled = false;
+            readyButton.SetActive(false);
+            canvas.ready = false;
         }
     }
 
