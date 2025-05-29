@@ -27,65 +27,68 @@ public class Character : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
         if (!CameraManager.instance.phaseCarte) return;
-
-        if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
+        
+        if (arrows)
         {
-            if (arrows)
-            {
-                ArrowControl();
-            }
-            else
-            {
-                ZQSDControl();
-            }
+            ArrowControl();
+        }
+        else
+        {
+            ZsqdControl();
         }
     }
 
     void ArrowControl()
     {
-        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
-            if ( indexH + (int) Input.GetAxisRaw("Horizontal") >=0 && indexH + (int) Input.GetAxisRaw("Horizontal") <= 2)
+            if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
             {
-                indexH += (int) Input.GetAxisRaw("Horizontal");
-                index = (indexH % 3) + (indexV * 3);
-                movePoint.position = tiles[index].transform.position;
-                movePoint.position += new Vector3(0f, 1f, 0f);
-            }
-        } else if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
-        {
-            if ( (indexV + (int) Input.GetAxisRaw("Vertical") >= 0) && (indexV + (int) Input.GetAxisRaw("Vertical") <= 2))
+                if ( indexH + (int) Input.GetAxisRaw("Horizontal") >=0 && indexH + (int) Input.GetAxisRaw("Horizontal") <= 2)
+                {
+                    indexH += (int) Input.GetAxisRaw("Horizontal");
+                    index = (indexH % 3) + (indexV * 3);
+                    movePoint.position = tiles[index].transform.position;
+                    movePoint.position += new Vector3(0f, 1f, 0f);
+                }
+            } else if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
             {
-                indexV += (int) Input.GetAxisRaw("Vertical");
-                index = (indexH % 3) + (indexV * 3);
-                movePoint.position = tiles[index].transform.position;
-                movePoint.position += new Vector3(0f, 1f, 0f);
+                if ( (indexV + (int) Input.GetAxisRaw("Vertical") >= 0) && (indexV + (int) Input.GetAxisRaw("Vertical") <= 2))
+                {
+                    indexV += (int) Input.GetAxisRaw("Vertical");
+                    index = (indexH % 3) + (indexV * 3);
+                    movePoint.position = tiles[index].transform.position;
+                    movePoint.position += new Vector3(0f, 1f, 0f);
+                }
+                
             }
-            
         }
     }
 
-    void ZQSDControl()
+    void ZsqdControl()
     {
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
-            if ( indexH + (int) Input.GetAxisRaw("Horizontal") >=0 && indexH + (int) Input.GetAxisRaw("Horizontal") <= 2)
+            if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
-                indexH += (int) Input.GetAxisRaw("Horizontal");
-                index = (indexH % 3) + (indexV * 3);
-                movePoint.position = tiles[index].transform.position;
-                movePoint.position += new Vector3(0f, 1f, 0f);
-            }
-        } else if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
-        {
-            if ( (indexV + (int) Input.GetAxisRaw("Vertical") >= 0) && (indexV + (int) Input.GetAxisRaw("Vertical") <= 2))
+                if ( indexH + (int) Input.GetAxisRaw("Horizontal") >=0 && indexH + (int) Input.GetAxisRaw("Horizontal") <= 2)
+                {
+                    indexH += (int) Input.GetAxisRaw("Horizontal");
+                    index = (indexH % 3) + (indexV * 3);
+                    movePoint.position = tiles[index].transform.position;
+                    movePoint.position += new Vector3(0f, 1f, 0f);
+                }
+            } else if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
             {
-                indexV += (int) Input.GetAxisRaw("Vertical");
-                index = (indexH % 3) + (indexV * 3);
-                movePoint.position = tiles[index].transform.position;
-                movePoint.position += new Vector3(0f, 1f, 0f);
+                if ( (indexV + (int) Input.GetAxisRaw("Vertical") >= 0) && (indexV + (int) Input.GetAxisRaw("Vertical") <= 2))
+                {
+                    indexV += (int) Input.GetAxisRaw("Vertical");
+                    index = (indexH % 3) + (indexV * 3);
+                    movePoint.position = tiles[index].transform.position;
+                    movePoint.position += new Vector3(0f, 1f, 0f);
+                }
+                
             }
-            
         }
     }
 }
