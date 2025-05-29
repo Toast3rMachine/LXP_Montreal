@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth = Mathf.Min(currentHealth + damage, maxHealth);
+        currentHealth = Mathf.Min(currentHealth - damage, maxHealth);
         OnHealthChanged?.Invoke(currentHealth / maxHealth);
         if (currentHealth <= 0f) Die();
     }

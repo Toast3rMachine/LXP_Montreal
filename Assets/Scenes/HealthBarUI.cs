@@ -14,7 +14,7 @@ public class HealthBarUI : MonoBehaviour
         if (targetHealth != null)
         {
             targetHealth.OnHealthChanged += UpdateHealthBar;
-            UpdateHealthBar(targetHealth.maxHealth / 20);
+            UpdateHealthBar(targetHealth.currentHealth / targetHealth.maxHealth);
         }
     }
 
