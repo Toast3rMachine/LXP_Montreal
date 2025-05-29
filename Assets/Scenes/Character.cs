@@ -6,6 +6,7 @@ public class Character : MonoBehaviour
     public float moveSpeed = 15f;
     public Transform movePoint;
     public GameObject[] tiles;
+    public bool arrows;
 
     private int index;
     private int indexH = 1;
@@ -29,27 +30,62 @@ public class Character : MonoBehaviour
 
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
-
-            if(Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
+            if (arrows)
             {
-                if ( (indexH + (int) Input.GetAxisRaw("Horizontal") >=0) && (indexH + (int) Input.GetAxisRaw("Horizontal") <= 2))
-                {
-                    indexH += (int) Input.GetAxisRaw("Horizontal");
-                    index = (indexH % 3) + (indexV * 3);
-                    movePoint.position = tiles[index].transform.position;
-                    movePoint.position += new Vector3(0f, 1f, 0f);
-                }
-            } else if(Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
-            {
-                if ( (indexV + (int) Input.GetAxisRaw("Vertical") >= 0) && (indexV + (int) Input.GetAxisRaw("Vertical") <= 2))
-                {
-                    indexV += (int) Input.GetAxisRaw("Vertical");
-                    index = (indexH % 3) + (indexV * 3);
-                    movePoint.position = tiles[index].transform.position;
-                    movePoint.position += new Vector3(0f, 1f, 0f);
-                }
-                
+                ArrowControl();
             }
+            else
+            {
+                ZQSDControl();
+            }
+        }
+    }
+
+    void ArrowControl()
+    {
+        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        {
+            if ( indexH + (int) Input.GetAxisRaw("Horizontal") >=0 && indexH + (int) Input.GetAxisRaw("Horizontal") <= 2)
+            {
+                indexH += (int) Input.GetAxisRaw("Horizontal");
+                index = (indexH % 3) + (indexV * 3);
+                movePoint.position = tiles[index].transform.position;
+                movePoint.position += new Vector3(0f, 1f, 0f);
+            }
+        } else if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
+        {
+            if ( (indexV + (int) Input.GetAxisRaw("Vertical") >= 0) && (indexV + (int) Input.GetAxisRaw("Vertical") <= 2))
+            {
+                indexV += (int) Input.GetAxisRaw("Vertical");
+                index = (indexH % 3) + (indexV * 3);
+                movePoint.position = tiles[index].transform.position;
+                movePoint.position += new Vector3(0f, 1f, 0f);
+            }
+            
+        }
+    }
+
+    void ZQSDControl()
+    {
+        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            if ( indexH + (int) Input.GetAxisRaw("Horizontal") >=0 && indexH + (int) Input.GetAxisRaw("Horizontal") <= 2)
+            {
+                indexH += (int) Input.GetAxisRaw("Horizontal");
+                index = (indexH % 3) + (indexV * 3);
+                movePoint.position = tiles[index].transform.position;
+                movePoint.position += new Vector3(0f, 1f, 0f);
+            }
+        } else if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+        {
+            if ( (indexV + (int) Input.GetAxisRaw("Vertical") >= 0) && (indexV + (int) Input.GetAxisRaw("Vertical") <= 2))
+            {
+                indexV += (int) Input.GetAxisRaw("Vertical");
+                index = (indexH % 3) + (indexV * 3);
+                movePoint.position = tiles[index].transform.position;
+                movePoint.position += new Vector3(0f, 1f, 0f);
+            }
+            
         }
     }
 }
