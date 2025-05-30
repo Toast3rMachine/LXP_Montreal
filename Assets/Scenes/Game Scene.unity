@@ -1229,7 +1229,7 @@ PrefabInstance:
       objectReference: {fileID: 49937508}
     - target: {fileID: 4049652050761886601, guid: ed0d7a663def01442a458cdee328c1e0, type: 3}
       propertyPath: m_Name
-      value: Sort de Feu P1
+      value: Sort de Feu P2
       objectReference: {fileID: 0}
     - target: {fileID: 4751962160353358187, guid: ed0d7a663def01442a458cdee328c1e0, type: 3}
       propertyPath: id
@@ -3700,7 +3700,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 430757582792562062, guid: 0bf3aa7d55e76e640beb1be02d9d2aef, type: 3}
       propertyPath: m_Name
-      value: Sort de Glace P1
+      value: Sort de Glace P2
       objectReference: {fileID: 0}
     - target: {fileID: 1298223288546107553, guid: 0bf3aa7d55e76e640beb1be02d9d2aef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3781,7 +3781,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2107206603454189974, guid: 7ab5b950cc9541e45b045e843cfa2ed0, type: 3}
       propertyPath: m_Name
-      value: Sort de Foudre P1
+      value: Sort de Foudre P2
       objectReference: {fileID: 0}
     - target: {fileID: 3386711744464393505, guid: 7ab5b950cc9541e45b045e843cfa2ed0, type: 3}
       propertyPath: player
@@ -4153,7 +4153,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2107206603454189974, guid: 7ab5b950cc9541e45b045e843cfa2ed0, type: 3}
       propertyPath: m_Name
-      value: Sort de Foudre
+      value: Sort de Foudre P1
       objectReference: {fileID: 0}
     - target: {fileID: 3386711744464393505, guid: 7ab5b950cc9541e45b045e843cfa2ed0, type: 3}
       propertyPath: player
@@ -4234,7 +4234,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 430757582792562062, guid: 0bf3aa7d55e76e640beb1be02d9d2aef, type: 3}
       propertyPath: m_Name
-      value: Sort de Glace
+      value: Sort de Glace P1
       objectReference: {fileID: 0}
     - target: {fileID: 1298223288546107553, guid: 0bf3aa7d55e76e640beb1be02d9d2aef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4323,7 +4323,7 @@ PrefabInstance:
       objectReference: {fileID: 49937508}
     - target: {fileID: 4049652050761886601, guid: ed0d7a663def01442a458cdee328c1e0, type: 3}
       propertyPath: m_Name
-      value: Sort de Feu
+      value: Sort de Feu P1
       objectReference: {fileID: 0}
     - target: {fileID: 4751962160353358187, guid: ed0d7a663def01442a458cdee328c1e0, type: 3}
       propertyPath: id

@@ -13,5 +13,6 @@ public class SpellDamage : MonoBehaviour
             health.TakeDamage(damage);
         }
         
+        gameObject.SetActive(false);
     }
 }
