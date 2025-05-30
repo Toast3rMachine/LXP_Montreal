@@ -1,9 +1,9 @@
 using UnityEngine;
+using TMPro;
 
 public class GameScene : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject[] tiles;
+    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,8 @@ public class Attack : MonoBehaviour
     // public GameObject card;
     public Transform platform;
     public GameObject player;
-
+    public bool reverse;
+    
     //[SerializeField] CardAttack cardAttack;
     private List<CardAttack> cardOrder;
     private CardAttack card;
@@ -37,17 +39,29 @@ public class Attack : MonoBehaviour
             CastSpellInList();
         }
         
-        if (isSpellcast && card.isThrow)
+        if (spell != null && isSpellcast && card.isThrow)
         {
-            
-            var direction = (platform.GetChild(4).transform.position-player.transform.position).normalized;
-            spell.transform.Translate(direction *  Time.deltaTime * card.moveSpeed);
-            if (spell.transform.position.x > platform.GetChild(4).transform.position.x)
+            if (reverse)
             {
-                Destroy(spell);
-                isSpellcast = false;
-                spellInInvocation = false;
-                index += 1;
+                spell.transform.Translate(Vector3.left *  Time.deltaTime * card.moveSpeed);
+                if (spell.transform.position.x < platform.GetChild(3).transform.position.x)
+                {
+                    Destroy(spell);
+                    isSpellcast = false;
+                    spellInInvocation = false;
+                    index += 1;
+                }
+            }
+            else
+            {
+                spell.transform.Translate(Vector3.right *  Time.deltaTime * card.moveSpeed);
+                if (spell.transform.position.x > platform.GetChild(5).transform.position.x)
+                {
+                    Destroy(spell);
+                    isSpellcast = false;
+                    spellInInvocation = false;
+                    index += 1;
+                }
             }
         }
         else if (isSpellcast && !card.isThrow)
@@ -74,12 +88,21 @@ public class Attack : MonoBehaviour
         }
     }
 
+    
+
     void CastSpellInList()
     {
         spellInInvocation = true;
         if (!isSpellcast && cardOrder[index].isThrow)
         {
-            spell = Instantiate(cardOrder[index].spellPrefab,  new Vector3(0.5f, 2f, 0f), Quaternion.identity);
+            if (reverse)
+            {
+                spell = Instantiate(cardOrder[index].spellPrefab,  new Vector3(-2f, 2f, 0f), Quaternion.identity);
+            }
+            else
+            {
+                spell = Instantiate(cardOrder[index].spellPrefab,  new Vector3(2f, 2f, 0f), Quaternion.identity);
+            }
             spell.transform.position += player.transform.position;
             isSpellcast = true;
         }
